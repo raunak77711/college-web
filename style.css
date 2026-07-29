@@ -1,0 +1,884 @@
+/* =========================================
+   PERSONAL PORTFOLIO - STYLE SHEET
+   A modern look built with gradients, soft
+   shadows, rounded cards and a dark mode.
+   ========================================= */
+
+/* ---- 1. COLOUR VARIABLES ----
+   Change a colour here and the whole site updates. */
+:root {
+  --accent: #4f46e5;         /* indigo - main brand colour */
+  --accent-2: #06b6d4;       /* cyan - used in gradients */
+  --accent-soft: rgba(79, 70, 229, 0.10);
+  --gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
+
+  --bg: #f5f6fb;             /* page background */
+  --surface: #ffffff;        /* cards and navbar */
+  --surface-2: #f8fafc;      /* inputs and tags */
+  --text: #0f172a;           /* main text */
+  --muted: #64748b;          /* softer text */
+  --border: rgba(15, 23, 42, 0.08);
+
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.12);
+  --radius: 20px;
+}
+
+/* ---- DARK MODE ----
+   The button in the navbar puts data-theme="dark"
+   on the <html> tag and these colours take over. */
+[data-theme="dark"] {
+  --accent: #818cf8;
+  --accent-2: #22d3ee;
+  --accent-soft: rgba(129, 140, 248, 0.14);
+
+  --bg: #0b1020;
+  --surface: #121a2f;
+  --surface-2: #1a2440;
+  --text: #e6ebf5;
+  --muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.09);
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- 2. BASIC RESET ----
+   Removes the default spacing browsers add. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Soft coloured glow behind the whole page */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(600px circle at 12% -5%, var(--accent-soft), transparent 60%),
+    radial-gradient(600px circle at 90% 8%, rgba(6, 182, 212, 0.10), transparent 60%);
+}
+
+h1, h2, h3, h4 {
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+main {
+  max-width: 1060px;
+  margin: 0 auto;      /* centres the page content */
+  padding: 40px 20px 60px 20px;
+}
+
+/* =========================================
+   3. NAVIGATION BAR
+   ========================================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 26px;
+  background: var(--surface);   /* fallback for older browsers */
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  backdrop-filter: blur(14px);        /* frosted glass effect */
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;                   /* stays at the top when scrolling */
+  top: 0;
+  z-index: 20;
+}
+
+.logo {
+  font-family: "Poppins", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* Small gradient circle next to my name */
+.logo-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: var(--gradient);
+  color: #fff;
+  font-size: 14px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;    /* removes the bullet points */
+  gap: 4px;
+}
+
+.nav-links a {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: color 0.25s, background 0.25s;
+}
+
+/* Hover effect for the menu links */
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+/* The page you are currently on */
+.nav-links a.active {
+  color: #fff;
+  background: var(--gradient);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.32);
+}
+
+/* Round buttons in the navbar (theme + hamburger) */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+/* Hamburger button - hidden on desktop, shown on mobile */
+.menu-btn {
+  display: none;
+}
+
+/* =========================================
+   4. BUTTONS
+   ========================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--gradient);
+  color: #fff;
+  border: none;
+  padding: 13px 30px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.28);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+/* Button lifts up slightly when you point at it */
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(79, 70, 229, 0.38);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+/* Outlined version for the secondary action */
+.btn.ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.btn.ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.btn.full {
+  width: 100%;         /* used for the form button */
+}
+
+/* =========================================
+   5. HOME PAGE - HERO
+   ========================================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-align: center;
+  padding: 60px 28px 55px 28px;
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+/* Two soft blurred circles floating in the background */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+  z-index: 0;
+  animation: float 14s ease-in-out infinite;
+}
+
+.hero::before {
+  background: var(--accent);
+  top: -140px;
+  left: -110px;
+}
+
+.hero::after {
+  background: var(--accent-2);
+  bottom: -160px;
+  right: -120px;
+  animation-delay: -7s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(24px, 26px); }
+}
+
+/* Keeps the text above the blurred circles */
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Small pill above the heading */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 999px;
+  margin-bottom: 22px;
+}
+
+.badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  70%  { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Photo with a gradient ring around it */
+.photo-ring {
+  width: 178px;
+  height: 178px;
+  margin: 0 auto 22px auto;
+  padding: 5px;
+  border-radius: 50%;
+  background: var(--gradient);
+  box-shadow: 0 14px 34px rgba(79, 70, 229, 0.32);
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* stops the photo from stretching */
+  border-radius: 50%;        /* makes it a circle */
+  border: 4px solid var(--surface);
+  display: block;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Gradient coloured text for my name */
+.blue {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+.welcome {
+  max-width: 570px;
+  color: var(--muted);
+  margin: 0 auto 30px auto;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* ---- QUICK STATS STRIP ---- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 14px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat b {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-size: 26px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---- SECTION HEADINGS ---- */
+.section-head {
+  text-align: center;
+  margin: 55px 0 22px 0;
+}
+
+.section-head h2 {
+  font-size: 28px;
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* =========================================
+   6. CARDS (used on Home and Contact)
+   ========================================= */
+.cards {
+  display: grid;
+  /* Cards fit side by side, then stack automatically on small screens */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+/* Thin gradient line that slides in along the top on hover */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* Rounded square that holds the emoji icon */
+.card-icon {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  background: var(--accent-soft);
+  border-radius: 14px;
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* =========================================
+   7. ABOUT PAGE
+   ========================================= */
+.page-title {
+  text-align: center;
+  font-size: clamp(28px, 5vw, 38px);
+  margin-bottom: 6px;
+}
+
+.page-sub {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+.about-card {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 34px;
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+}
+
+.about-photo {
+  width: 270px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 20px;
+  flex-shrink: 0;     /* keeps the photo from squashing */
+  box-shadow: var(--shadow-lg);
+}
+
+.about-text h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.about-text p {
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* Small skill labels */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 24px 0;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.25s;
+}
+
+.tag:hover {
+  background: var(--gradient);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+/* ---- QUICK FACTS LIST ---- */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.fact {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s;
+}
+
+.fact:hover {
+  transform: translateY(-4px);
+}
+
+.fact .card-icon {
+  margin-bottom: 0;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+}
+
+.fact b {
+  display: block;
+  font-size: 15px;
+}
+
+.fact span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* =========================================
+   8. CONTACT PAGE
+   ========================================= */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.info-card h3,
+.form-card h3 {
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+.info-line {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.info-line:last-of-type {
+  border-bottom: none;
+}
+
+/* Round coloured circle behind each contact icon */
+.icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  background: var(--accent-soft);
+  border-radius: 12px;
+}
+
+.info-line b {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.info-card h4 {
+  margin: 22px 0 12px 0;
+  font-size: 16px;
+}
+
+/* Round social icons */
+.socials {
+  display: flex;
+  gap: 10px;
+}
+
+.social {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: 0.25s;
+}
+
+.social:hover {
+  background: var(--gradient);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+}
+
+/* ---- FORM ---- */
+label {
+  display: block;
+  margin: 16px 0 6px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 13px 15px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  resize: vertical;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+/* Coloured glow when you click inside a field */
+input:focus,
+textarea:focus {
+  outline: none;
+  background: var(--surface);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+form .btn {
+  margin-top: 22px;
+}
+
+/* Message shown by JavaScript after submitting */
+.form-msg {
+  display: none;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 14px;
+  color: #16a34a;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* JavaScript adds this class once the form is sent */
+.form-msg.show {
+  display: block;
+  animation: rise 0.4s ease;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   9. FOOTER
+   ========================================= */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.25s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* =========================================
+   10. SCROLL ANIMATION
+   Elements fade upwards as they come into view.
+   The "js" class is added by script.js, so the
+   content still shows if JavaScript is off.
+   ========================================= */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   11. RESPONSIVE - phones and small tablets
+   ========================================= */
+@media (max-width: 760px) {
+
+  .navbar {
+    padding: 12px 18px;
+  }
+
+  /* Show the hamburger button */
+  .menu-btn {
+    display: grid;
+  }
+
+  /* Hide the menu until the button is clicked */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    position: absolute;
+    top: 72px;
+    right: 16px;
+    left: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 18px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* JavaScript adds this class to open the menu */
+  .nav-links.show {
+    display: flex;
+    animation: rise 0.25s ease;
+  }
+
+  .nav-links a {
+    text-align: center;
+  }
+
+  .hero {
+    padding: 45px 20px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  /* Stack the about card instead of side by side */
+  .about-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 26px;
+  }
+
+  .about-photo {
+    width: 100%;
+    max-width: 280px;
+    height: 300px;
+  }
+
+  .skills,
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .info-line {
+    text-align: left;
+  }
+}
+
+/* Respect the system setting for people who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

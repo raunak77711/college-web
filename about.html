@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raunak | About</title>
+
+  <!-- Nicer fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Applies the saved theme before the page paints, so it never flashes white -->
+  <script>
+    document.documentElement.classList.add("js");
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-dot">R</span> Raunak
+    </a>
+
+    <div class="nav-right">
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="Change theme">&#9790;</button>
+      <button class="icon-btn menu-btn" onclick="toggleMenu()" title="Menu">&#9776;</button>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="page-title reveal">About <span class="blue">Me</span></h2>
+    <p class="page-sub reveal">A little bit about who I am and what I am learning.</p>
+
+    <!-- ===== ABOUT CARD (image on the left, text on the right) ===== -->
+    <section class="about-card reveal">
+      <!-- Change this to images/photo2.jpg when you add another picture -->
+      <img src="images/raunak.jpeg" alt="Raunak" class="about-photo" />
+
+      <div class="about-text">
+        <h3>Hi, I'm Raunak &#128075;</h3>
+        <p>
+          I am a student at <strong>Islington College</strong>, where I am learning
+          about computing and web development. I like turning simple ideas into
+          real web pages, and I believe the best way to learn is by building
+          small projects and improving them step by step.
+        </p>
+        <p>
+          Right now I am practising HTML, CSS and JavaScript. Outside of studying,
+          I enjoy exploring new technology, listening to music and spending time
+          with friends.
+        </p>
+
+        <!-- ===== SKILL TAGS ===== -->
+        <div class="skills">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Responsive Design</span>
+          <span class="tag">Teamwork</span>
+        </div>
+
+        <a href="contact.html" class="btn">Contact Me &rarr;</a>
+      </div>
+    </section>
+
+    <!-- ===== QUICK FACTS ===== -->
+    <div class="section-head reveal">
+      <h2>Quick Facts</h2>
+      <p>The short version.</p>
+    </div>
+
+    <section class="facts">
+      <div class="fact reveal">
+        <div class="card-icon">&#127979;</div>
+        <div>
+          <b>Islington College</b>
+          <span>Studying computing</span>
+        </div>
+      </div>
+      <div class="fact reveal">
+        <div class="card-icon">&#128205;</div>
+        <div>
+          <b>Kathmandu, Nepal</b>
+          <span>Where I am based</span>
+        </div>
+      </div>
+      <div class="fact reveal">
+        <div class="card-icon">&#127911;</div>
+        <div>
+          <b>Music &amp; Tech</b>
+          <span>What I do for fun</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 Raunak &mdash; Islington College</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

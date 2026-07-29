@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- This line makes the site responsive on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raunak | Home</title>
+
+  <!-- Nicer fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Applies the saved theme before the page paints, so it never flashes white -->
+  <script>
+    document.documentElement.classList.add("js");
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-dot">R</span> Raunak
+    </a>
+
+    <div class="nav-right">
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Switches between light and dark colours -->
+      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="Change theme">&#9790;</button>
+
+      <!-- Menu button that only shows on small screens -->
+      <button class="icon-btn menu-btn" onclick="toggleMenu()" title="Menu">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ===== HERO SECTION (main welcome area) ===== -->
+  <main>
+    <section class="hero reveal">
+      <span class="badge"><span class="dot"></span> Open to learning &amp; new projects</span>
+
+      <!-- My photo from the images folder -->
+      <div class="photo-ring">
+        <img src="images/raunak.jpeg" alt="Photo of Raunak" class="hero-photo" />
+      </div>
+
+      <h1>Hello, I'm <span class="blue">Raunak</span></h1>
+      <p class="subtitle">Student at Islington College</p>
+      <p class="welcome">
+        Welcome to my personal portfolio website! I am learning web development
+        and I built this whole site using plain HTML, CSS and JavaScript.
+      </p>
+
+      <div class="hero-actions">
+        <!-- The button calls a function inside script.js -->
+        <button class="btn" onclick="learnMore()">Learn More &rarr;</button>
+        <a href="contact.html" class="btn ghost">Get in Touch</a>
+      </div>
+    </section>
+
+    <!-- ===== QUICK STATS ===== -->
+    <section class="stats reveal">
+      <div class="stat"><b>3</b><span>Languages learning</span></div>
+      <div class="stat"><b>6+</b><span>Practice projects</span></div>
+      <div class="stat"><b>100%</b><span>Hand written code</span></div>
+    </section>
+
+    <!-- ===== THREE SIMPLE CARDS ===== -->
+    <div class="section-head reveal">
+      <h2>What I Do</h2>
+      <p>A few things I am working on right now.</p>
+    </div>
+
+    <section class="cards">
+      <div class="card reveal">
+        <div class="card-icon">&#128187;</div>
+        <h3>Web Design</h3>
+        <p>I enjoy building clean and simple web pages that look good on any screen.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">&#127891;</div>
+        <h3>Student</h3>
+        <p>Currently studying at Islington College and learning something new every day.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">&#128161;</div>
+        <h3>Learning</h3>
+        <p>Exploring HTML, CSS and JavaScript one small workshop.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 Raunak &mdash; Islington College</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
